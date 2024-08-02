@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US" oncontextmenu="help(event)" style="cursor: none;">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0SK74KNGFJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0SK74KNGFJ');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.U AI</title>
+    <link rel="icon" href="./logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+</head>
+<div class="Main" id="main">
+    <button class="Main_Button" style="left: 0%; margin-left: 0%;" onclick="home_menu()"><i
+            class="fa-solid fa-house"></i></button>
+    <button class="Main_Button" onclick="userInfo()" id="main_user"><i class="fa-solid fa-user"></i></button>
+    <button class="Main_Button2" onclick="tooll(code)"><i class="fa-solid fa-code"></i></button>
+    <button class="Main_Button2" onclick="tooll(image)"><i class="fa-solid fa-image"></i></button>
+    <button class="Main_Button2" onclick="tooll(video)"><i class="fa-solid fa-video"></i></button>
+    <button class="Main_Button2" onclick="tooll(pdf)"><i class="fa-solid fa-file-pdf"></i></button>
+    <button class="Main_Button2" onclick="category()"><i class="fa-solid fa-layer-group"></i></button>
+    <button class="Main_Button2" id="themebutton" onclick="toggleBackgroundColor()"></button>
+</div>
+<div class="Dialog_Content" id="content">
+    <div class="Dialog" id="dialog">
+        <button class="Dialog_Close" id="dialogc" onclick="close_content()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="UserContent" id="ucontent"></div>
+    </div>
+</div>
+<div class="home" id="home">
+    <div class="home_file" id="drop-area">
+        <i class="fa-solid fa-file fa-bounce"></i>
+    </div>
+</div>
+<!--?AI AREA-->
+<div class="AI_AREA" id="AI">
+    <div id="circle" class="circle"><i id="mouseclick" class="fa-solid fa-computer-mouse"></i></div>
+    <div class="Help" id="here">
+        <button class="H-Copy" id="copyButton" onclick="copy()" title="Copy">
+            <i class="fa-regular fa-copy"></i>
+        </button>
+        <button class="H-Delete" id="deleteButton" onclick="deleteElements()" title="Clear the message">
+            <i class="fa-regular fa-trash-can"></i>
+        </button>
+        <button class="H-Volume" id="volumeButton" onclick="Read_Area()" title="Read message">
+            <i class="fa-solid fa-volume-high"></i>
+        </button>
+    </div>
+    <div class="MessagesContainer" id="messageLine""><div id="x" class="Messages"></div>
+</div>
+<div id="activity" class="Activity"><textarea class="Search-Button" id="t"></textarea><button id="go" class="Go"
+        title="Send"><i id="gobutton" class="fa-solid fa-arrow-up"></i></button><input style="visibility:hidden"
+        type="file" id="fileInput"><button id="d" class="File" title="Send file" onclick="fille()"><i
+            class="fa-solid fa-file"></i></button><button id="microphoneListed" class="Microphone"
+        onclick="toggleStartStop()" title="Microphone"><i id="microphone_icon"
+            class="fa-solid fa-microphone"></i></button></div>
+</div>
+<div class="Wait" id="waited"></div>
+
+<body>
+    <script src="index.js"></script>
+    <script src="https://kit.fontawesome.com/a9765dc86b.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

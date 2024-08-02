@@ -1,0 +1,674 @@
+body {
+  background-color: rgb(0, 0, 0);
+  transition: background-color 3s;
+  overflow-y: scroll;
+  overflow: hidden;
+}
+.Dialog_Content {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #1d790a00;
+  z-index: 6;
+  visibility: hidden;
+  left: 0%;
+  top: 0%;
+}
+.Dialog {
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  background-color: rgb(0, 0, 0);
+  z-index: 6;
+  border: none;
+  border: 1px solid rgb(52, 243, 154);
+}
+
+.Dialog_Close {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  right: 0%;
+  background-color: #790a0a00;
+  color: white;
+  font-size: x-large;
+  z-index: 5;
+}
+.Main_Button {
+  width: 2.5em;
+  position: absolute;
+  height: 2.5em;
+  top: 0%;
+  background-color: rgba(255, 255, 255, 0.123);
+  outline: none;
+  border-radius: 50%;
+  left: 100%;
+  font-size: x-large;
+  color: white;
+  border-color: rgb(52, 243, 154);
+  margin-left: -2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Main_Button2 {
+  width: 3em;
+  position: relative;
+  height: 2.5em;
+  top: 0%;
+  background-color: rgba(255, 255, 255, 0.123);
+  outline: none;
+  font-size: x-large;
+  color: white;
+  border-left-style: groove;
+  border-right-style: groove;
+  border-left-color: rgb(52, 243, 154);
+  text-align: center;
+  border-right-color: rgb(52, 243, 154);
+}
+.Profil_Photo {
+  width: 10em;
+  height: 10em;
+  top: 0%;
+  border-radius: 50%;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.123);
+  border-color: rgb(52, 243, 154);
+  outline: none;
+}
+.Button_Div {
+  width: 100%;
+  height: 80%;
+  top: 40%;
+  background-color: #790a0a00;
+  left: 0%;
+  position: absolute;
+}
+
+.Wait {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #1d790a25;
+  visibility: hidden;
+  z-index: 8;
+  top: 0%;
+  left: 0%;
+}
+
+.Wait_Content {
+  word-wrap: break-word;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(52, 243, 154, 0.274);
+  z-index: 1;
+}
+
+.UserContent {
+  position: absolute;
+  background-color: #ffffff00;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: grid;
+  justify-content: center;
+}
+
+.Write {
+  font-size: x-large;
+  color: rgb(52, 243, 154);
+  font-style: italic;
+  margin-left: 30%;
+  margin-top: 10%;
+  width: 50%;
+}
+
+.Image {
+  position: absolute;
+  top: 0%;
+  width: 25%;
+}
+
+.Name {
+  position: relative;
+  height: 2em;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  border-radius: 4px;
+  border: white 1px;
+  background-color: rgb(52, 243, 154);
+  outline: none;
+  color: white;
+  caret-color: #090;
+}
+
+.Email-Password {
+  position: relative;
+  height: 2em;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  border-radius: 4px;
+  border: white 1px;
+  background-color: rgb(52, 243, 154);
+  outline: none;
+  color: white;
+  caret-color: #090;
+}
+
+.Problem {
+  position: absolute;
+  width: 20%;
+  height: 10%;
+  right: 0%;
+  bottom: 0%;
+  color: rgb(52, 243, 154);
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: large;
+  text-align: end;
+}
+
+.Span {
+  position: relative;
+  color: rgb(52, 243, 154);
+  font-size: medium;
+  white-space: pre;
+  text-align: center;
+}
+.Span2 {
+  position: relative;
+  color: rgb(52, 243, 154);
+  font-size: medium;
+  white-space: pre;
+  text-align: start;
+  margin: 25%;
+}
+.Button {
+  position: relative;
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 30px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: xx-large;
+  color: rgb(52, 243, 154);
+}
+
+.Login {
+  position: absolute;
+  width: 20%;
+  height: 10%;
+  left: 0%;
+  bottom: 0%;
+  color: rgb(52, 243, 154);
+  text-align: start;
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: large;
+}
+
+.Img {
+  width: 50%;
+  height: 50%;
+  border: 1px white;
+  outline: none;
+  border-radius: 50%;
+  position: absolute;
+  left: 25%;
+  top: 20%;
+  background-color: rgba(0, 0, 0, 0);
+  color: yellow;
+  font-size: 500%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Info_Div {
+  position: absolute;
+  background-color: aliceblue;
+  width: 40%;
+  height: 5%;
+  left: 30%;
+  z-index: 7;
+  font-size: large;
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  top: 0%;
+}
+.Main {
+  position: absolute;
+  width: 100%;
+  height: 6.5%;
+  min-height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0%;
+  top: 0%;
+  border-bottom-style: ridge;
+  border-bottom-color: rgb(52, 243, 154);
+}
+.gearsSpan {
+  position: relative;
+  color: rgb(52, 243, 154);
+  font-size: medium;
+  white-space: pre;
+  text-align: center;
+}
+
+.gearsDiv {
+  position: absolute;
+  background: #f0f8ff6b;
+  width: 100%;
+  left: 0%;
+  height: 60%;
+  top: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: visible;
+  border-radius: 10px;
+}
+
+.gearsH {
+  position: absolute;
+  color: rgb(52, 243, 154);
+  font-size: medium;
+  white-space: pre;
+  text-align: center;
+}
+
+.gearsChildDIV {
+  position: absolute;
+  width: 70%;
+  border-radius: 10px;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 255, 255, 0);
+}
+
+.gearsButton {
+  position: absolute;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  color: rgb(52, 243, 154);
+  font-size: larger;
+}
+#ucontent::-webkit-scrollbar {
+  width: 9px;
+}
+
+#ucontent::-webkit-scrollbar-thumb {
+  background-color: #5ab1ec00;
+  border-radius: 30px;
+}
+
+#ucontent::-webkit-scrollbar-track {
+  background-color: #eeeeee00;
+}
+
+#ucontent::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(52, 243, 154);
+}
+.home {
+  position: fixed;
+  width: 100%;
+  height: 109.5%;
+  top: 6.5%;
+  left: 0%;
+  background-color: #00000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home_file {
+  width: 50%;
+  height: 50%;
+  outline: none;
+  border-color: rgb(52, 243, 154);
+  border-style: double;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.home_file i {
+  position: relative;
+  font-size: 10em;
+  color: rgb(52, 243, 154);
+}
+input[type="file"] {
+  display: none;
+}
+.iframetool {
+  position: relative;
+  width: 100%;
+  height: -webkit-fill-available;
+  overflow: hidden;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+.AI_AREA {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+  left: 100%;
+  bottom: 0%;
+  margin-left: -5em;
+  border-radius: 50%;
+  outline: none;
+  background-color: #f0f8ff00;
+  color: rgb(52, 243, 154);
+  background-image: url(http://localhost:3002/logo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 3s;
+}
+.AI_AREA2 {
+  transition: 3s;
+  position: absolute;
+  width: 24.5%;
+  height: 80%;
+  left: 100%;
+  bottom: 0%;
+  margin-left: -24.5%;
+  border-radius: 3em 0 0 0;
+  background-color: #f0f8ff00;
+  color: rgb(52, 243, 154);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: rgb(52, 243, 154);
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.Activity {
+  width: 100%;
+  position: absolute;
+  height: 7%;
+  background: linear-gradient(
+    60deg,
+    rgb(3, 48, 48),
+    rgba(69, 145, 113, 0),
+    rgba(69, 145, 113, 0),
+    rgb(3, 48, 48)
+  );
+  box-shadow: 0 0 10px rgb(52, 243, 154);
+  background-size: 200% 200%;
+  left: 0%;
+  bottom: 0%;
+  display: grid;
+  border-radius: 30px;
+  animation: neonAnimation 10s linear infinite;
+  z-index: 4;
+  visibility: hidden;
+}
+
+@keyframes neonAnimation {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  25% {
+    background-position: 25% 50%;
+  }
+
+  50% {
+    background-position: 50% 50%;
+  }
+
+  75% {
+    background-position: 75% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+.Microphone {
+  position: absolute;
+  background-color: rgba(37, 136, 136, 0);
+  left: 70%;
+  width: 10%;
+  height: 85%;
+  bottom: 10%;
+  color: azure;
+  border: none;
+  font-size: x-large;
+}
+
+.File {
+  position: absolute;
+  background-color: rgba(0, 255, 255, 0);
+  left: 80%;
+  width: 10%;
+  border: none;
+  height: 85%;
+  color: azure;
+  bottom: 10%;
+  font-size: x-large;
+}
+
+.Go {
+  position: absolute;
+  background-color: rgba(0, 255, 255, 0);
+  right: 0%;
+  border-radius: 0px 30px 30px 0px;
+  width: 10%;
+  height: 100%;
+  color: azure;
+  border: none;
+  font-size: x-large;
+}
+
+#t::-webkit-scrollbar {
+  width: 9px;
+}
+
+#t::-webkit-scrollbar-thumb {
+  background-color: #5ab1ec00;
+  border-radius: 30px;
+}
+
+#t::-webkit-scrollbar-track {
+  background-color: #eeeeee00;
+}
+
+#t::-webkit-scrollbar-thumb:hover {
+  background-color: lightblue;
+}
+
+#o::-webkit-scrollbar {
+  width: 9px;
+}
+
+#o::-webkit-scrollbar-thumb {
+  background-color: #5ab1ec00;
+  border-radius: 30px;
+}
+
+#o::-webkit-scrollbar-track {
+  background-color: #eeeeee00;
+}
+
+#o::-webkit-scrollbar-thumb:hover {
+  background-color: lightblue;
+}
+
+#x::-webkit-scrollbar {
+  width: 9px;
+}
+
+#x::-webkit-scrollbar-thumb {
+  background-color: #5ab1ec00;
+  border-radius: 30px;
+}
+
+#x::-webkit-scrollbar-track {
+  background-color: #eeeeee00;
+}
+
+#x::-webkit-scrollbar-thumb:hover {
+  background-color: lightblue;
+}
+
+#ucontent::-webkit-scrollbar {
+  width: 9px;
+}
+
+#ucontent::-webkit-scrollbar-thumb {
+  background-color: #5ab1ec00;
+  border-radius: 30px;
+}
+
+#ucontent::-webkit-scrollbar-track {
+  background-color: #eeeeee00;
+}
+
+#ucontent::-webkit-scrollbar-thumb:hover {
+  background-color: lightblue;
+}
+
+.MessagesContainer {
+  width: 100%;
+  height: 93%;
+  top: 0;
+  position: absolute;
+  left: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Messages {
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  margin-left: 50%;
+}
+
+.Messages ::selection {
+  color: rgba(0, 100, 0, 0.562);
+}
+
+.message-container {
+  word-wrap: break-word;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(3, 48, 48);
+  z-index: 1;
+}
+.Messages {
+  overflow-y: scroll;
+}
+.Search-Button {
+  background-color: rgba(0, 255, 255, 0);
+  position: absolute;
+  width: 58%;
+  left: 2%;
+  bottom: 40%;
+  height: 60%;
+  border: none;
+  font-size: x-large;
+  color: azure;
+  display: flex;
+  overflow-y: auto;
+  outline: none;
+  resize: none;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(50%);
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(52, 243, 154, 0.575);
+  transition: transform 0s, box-shadow 0.1s;
+  position: fixed;
+  z-index: 6;
+  color: rgb(52, 243, 154);
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Help {
+  background-color: rgba(255, 255, 255, 0.199);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  min-height: 5%;
+  height: auto;
+  border-radius: 10px;
+  position: fixed;
+  visibility: hidden;
+  z-index: 7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.H-Copy {
+  background-color: rgba(0, 0, 0, 0);
+  width: 40px;
+  height: 100%;
+  position: relative;
+  border: none;
+  color: rgb(52, 243, 154);
+}
+
+.H-Delete {
+  background-color: rgba(0, 255, 255, 0);
+  width: 40px;
+  height: 100%;
+  position: relative;
+  border: none;
+  color: rgb(52, 243, 154);
+}
+
+.H-Volume {
+  background-color: rgba(0, 255, 255, 0);
+  width: 40px;
+  height: 100%;
+  position: relative;
+  border: none;
+  color: rgb(52, 243, 154);
+}
+button {
+  cursor: none;
+}
