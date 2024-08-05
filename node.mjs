@@ -1,13 +1,22 @@
 import fs, { mkdir } from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
+import puppeteer from 'puppeteer';
 import fetch from 'node-fetch';
-import { createServer } from 'http';
+import { createServer } from 'https';
 import express from 'express';
 import { WebSocketServer } from 'ws';
 import pdfjs from 'pdfkit';
 import { mkdirSync } from 'fs';
-const server = createServer((req, res) => {
+let send_email = '';
+let send_code = '';
+let msa = 'Hello, your verification code to log in to your account';
+const options = {
+    key: fs.readFileSync('./-package/private.key'),
+    cert: fs.readFileSync('./-package/certificate.crt'),
+    ca: fs.readFileSync('./-package/ca_bundle.crt')
+};
+const server = createServer(options, (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('WebSocket Server is Running');
 });
@@ -123,10 +132,10 @@ wss.on('connection', function connection(ws) {
                 }
                 if (ok) {
                     let text = `Name:${name}%+/Email:${email}%+/Password:${password}%+/Id:${random()}%+/`;
-                    fs.writeFile(`waited_acount/${code}.txt`, text, (err) => { if (err) { console.warn(err); } });
-                    /**
-                     * ? USE YOUR OWN GMAIL API
-                     */
+                    fs.writeFile(`./waited_acount/${code}.txt`, text, (err) => { if (err) { console.warn(err); } });
+                    send_email = email;
+                    send_code = code;
+                    SU();
                     const file = Buffer.from(profile, 'base64');
                     fs.writeFile(`profil/${email}.png`, file, (err) => { if (err) { console.warn('Profil picture not saved'); } });
                 }
@@ -137,7 +146,7 @@ wss.on('connection', function connection(ws) {
                 sign = sign.replace(codeRegex, (match, one) => { code = one; return match; });
                 sign = sign.replace(emailRegex, (match, two) => { email = two; return match; });
                 let names = ''; let password = ''; let emails = ''; let Id = '';
-                fs.readFile(`waited_acount/${code}.txt`, 'utf8', (err, data) => {
+                fs.readFile(`./waited_acount/${code}.txt`, 'utf8', (err, data) => {
                     if (err) { let quick = 'Wrong code!'; let color = 'red'; const query = `Info?:${quick}+/+Color:${color}+`; ws.send(query); }
                     else {
                         const nameRegex = /Name:(.+)\%\+\/Email/g;
@@ -156,12 +165,12 @@ wss.on('connection', function connection(ws) {
                                             if (!fs.existsSync(`./SQL/${email}.su`)) {
                                                 fs.writeFile(`./SQL/${email}.su`, `Name:⁂${names}⁂Email:⁂${email}⁂Password:⁂${password}⁂Id:⁂${Id}⁂`, (err) => { if (err) { let quick = 'Please retry...'; let color = 'red'; const query = `Info?:${quick}+/+Color:${color}+`; ws.send(query); } });
                                                 const query = `SET(%Email:${email}/Name:${names}/Id:${Id}%)VALUES`; ws.send(query);
-                                                if (!fs.existsSync(`./file${email}`)) {fs.mkdirSync(`./file/${email}`);}
+                                                if (!fs.existsSync(`./file${email}`)) { fs.mkdirSync(`./file/${email}`); }
                                             }
                                             else {
                                                 let quick = 'E-mail used!'; let color = 'red'; const query = `Info?:${quick}+/+Color:${color}+`; ws.send(query);
                                             }
-                                            fs.unlink(`waited_acount/${code}.txt`, (err) => { if (err) { console.error('Error deleting file:', err); } });
+                                            fs.unlink(`./waited_acount/${code}.txt`, (err) => { if (err) { console.error('Error deleting file:', err); } });
                                         }
                                     }
                                 }
@@ -217,6 +226,9 @@ wss.on('connection', function connection(ws) {
                             let letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; let leternum = Math.floor(Math.random() * 26); let oneL = letter.charAt(leternum); let one = Math.floor(Math.random() * 10) + 1;
                             let two = Math.floor(Math.random() * 10) + 1; let three = Math.floor(Math.random() * 10) + 1; let four = Math.floor(Math.random() * 10) + 1; let five = Math.floor(Math.random() * 10) + 1;
                             const code = `${oneL}${one}${two}${three}${four}${five}`;
+                            send_email = email;
+                            send_code = code;
+                            SU();
                             fs.readFile(`./SQL/${email}.su`, 'utf8', (err, data) => {
                                 if (err) { let quick = 'Acount is broken!'; let color = 'red'; const query = `Info?:${quick}+/+Color:${color}+`; ws.send(query) }
                                 else {
@@ -296,8 +308,120 @@ wss.on('connection', function connection(ws) {
             /**  
              * ?Acount area */
         }
+
+        async function SU() {
+            let count = 0;
+            const browser = await puppeteer.launch({
+                executablePath: '/usr/bin/chromium-browser',
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+            const page = await browser.newPage();
+            const url = 'https://webmail.mail.us-east-1.awsapps.com/workmail/?organization=s-u'; await page.goto(url);
+            const name = 'suleyman'; const pass = 'wrtytresdfDfdQ7564?!';
+            const inputId = 'wdc_username'; const inputId2 = 'wdc_password';
+            await page.waitForSelector(`#${inputId}`, { visible: true });
+            await page.type(`#${inputId}`, name);
+            await page.waitForSelector(`#${inputId2}`, { visible: true });
+            await page.type(`#${inputId2}`, pass);
+            await page.waitForSelector(`#wdc_login_button`, { visible: true });
+            await page.click(`#wdc_login_button`);
+            await page.waitForNavigation({ waitUntil: 'networkidle0' });
+            const buttonHandle = await page.evaluateHandle(() => {
+                const xpath = '//*[@id="ext-gen105"]/a';
+                const result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+                return result.singleNodeValue;
+            });
+            if (buttonHandle) {
+                await buttonHandle.click();
+            }
+            await page.evaluate((send_email, count) => {
+                const xpath = '/html/body/div[1]/div/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/div/form/div/div[1]/div/div[1]/div/div[2]/div/div[2]/ul/li/input';
+                const result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+                const inputElement = result.singleNodeValue;
+                if (inputElement) {
+                    setTimeout(() => {
+                        inputElement.value = send_email;
+                    }, 1000);
+                }
+                if (inputElement.value = '') {
+                    setTimeout(() => {
+                        inputElement.value = send_email;
+                    }, 1000);
+                }
+                if (inputElement.value) {
+                    count++
+                }
+            }, send_email, count);
+            const frameHandle = await page.waitForSelector('iframe');
+            const frame = await frameHandle.contentFrame();
+            if (frame) {
+                frame.evaluate((send_code, count) => {
+                    const pElement = document.querySelector('p');
+                    if (pElement) {
+                        setTimeout(() => {
+                            pElement.innerText =
+                                `Use this code to log into your account
+                         Code: ${send_code}
+                        If you don't want the code, ignore it.`;
+                        }, 1000);
+                    }
+                    if (pElement.innerText = '') {
+                        setTimeout(() => {
+                            pElement.innerText =
+                                `Use this code to log into your account
+                         Code: ${send_code}
+                        If you don't want the code, ignore it.`;
+                        }, 1000)
+                    }
+                    if (pElement.value) {
+                        count++
+                        console.log(count);
+                    }
+                }, send_code, count);
+
+            }
+            //await browser.close();
+            const send = await page.waitForSelector('#ext-gen307');
+            await page.keyboard.press('ContextMenu');
+            setTimeout(() => {
+                page.keyboard.press('Enter');
+            }, 1000);
+            if (send) {
+                setTimeout(() => {
+                    page.evaluate((count, msa) => {
+                        const xpath = '/html/body/div[1]/div/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/div/form/div/div[1]/div/div[1]/div/div[6]/div/input';
+                        const result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+                        const inputElement = result.singleNodeValue;
+                        if (inputElement) {
+                            setTimeout(() => {
+                                inputElement.value = msa;
+                            }, 1000);
+                        }
+                        if (inputElement.value == '') {
+                            setTimeout(() => {
+                                inputElement.value = msa;
+                            }, 1000);
+                        }
+                        if (inputElement.value) {
+                            count++
+                        }
+                    }, count, msa);
+                }, 2000);
+                setTimeout(() => {
+                    send.click();
+                    console.log('Finish!');
+                    setTimeout(() => {
+                        serun();
+                    }, 2000);
+                }, 4000);
+            }
+            function serun() {
+                browser.close();
+            }
+        }
     });
 });
+
 server.listen(3000, () => {
     console.log(`\x1b[36mServer is runing...\x1b[0m`);
 });

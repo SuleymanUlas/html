@@ -384,7 +384,7 @@ input[type="file"] {
   outline: none;
   background-color: #f0f8ff00;
   color: rgb(52, 243, 154);
-  background-image: url(http://localhost:3002/logo.png);
+  background-image: url(./profil/logo.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
